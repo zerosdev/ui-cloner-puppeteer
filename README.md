@@ -3,7 +3,7 @@ Clone web page and save assets locally
 
 ## Installation
 
-  - Clone this repository
+  - Clone or download this repository
   - Open Terminal and run `cd path/to/ui-cloner-puppeteer`
   - Run `npm install`
 
