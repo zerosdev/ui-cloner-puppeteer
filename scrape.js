@@ -15,6 +15,8 @@ if (! args.hasOwnProperty('url') || args.url.length === 0) {
 }
 
 const target = args['url'];
+let disable = args.hasOwnProperty('disable') ? args['disable'] : null;
+const disabled = disable !== null ? disable.split(',') : [];
 const hostname = new URL(target);
 const host = hostname.hostname;
 
@@ -23,13 +25,27 @@ const host = hostname.hostname;
   const page = await browser.newPage();
   await page.setRequestInterception(true);
 
+  var dis = [];
+  let pairs = {
+    'image': 'image',
+    'css': 'stylesheet',
+    'js': 'script',
+    'font': 'font'
+  };
+
+  Object.keys(pairs).forEach(function(v, i) {
+    if (disabled.includes(v)) {
+      dis.push(pairs[v]);
+    }
+  });
+
   // never load image
   page.on('request', (req) => {
-  	if (['image'].includes(req.resourceType())) {
-  		req.abort();
-  	} else {
-  		req.continue();
-  	}
+    if (dis.includes(req.resourceType())) {
+      req.abort();
+    } else {
+      req.continue();
+    }
   });
 
   // intercept response and save content
