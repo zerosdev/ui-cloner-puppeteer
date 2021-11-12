@@ -9,9 +9,9 @@
 
 ## Usage
 
-Run `node scrape.js url={target url}`
+Run `node clone.js url={target url}`
 
-Example : `node scrape.js url=https://google.com`
+Example : `node clone.js url=https://google.com`
 
 ## Arguments
 
