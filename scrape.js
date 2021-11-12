@@ -14,7 +14,9 @@ if (! args.hasOwnProperty('url') || args.url.length === 0) {
   return;
 }
 
-const url = args['url'];
+const target = args['url'];
+const hostname = new URL(target);
+const host = hostname.hostname;
 
 (async () => {
   const browser = await puppeteer.launch({headless: false});
@@ -35,7 +37,7 @@ const url = args['url'];
   	const url = new URL(res.url());
     const regex = /http(s|):\/\//is;
     if (! regex.test(url.pathname)) {
-      let filePath = path.resolve(`./output${url.pathname}`);
+      let filePath = path.resolve(`./output/${host}${url.pathname}`);
       if (path.extname(url.pathname).trim() === '') {
         filePath = `${filePath}/index.html`;
       }
@@ -44,7 +46,7 @@ const url = args['url'];
   });
 
   // go to target url
-  await page.goto(url, {
+  await page.goto(target, {
       waitUntil: "networkidle2", // wait till all network requests has been processed
     });
 
