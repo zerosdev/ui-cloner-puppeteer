@@ -1,7 +1,7 @@
 {
   "name": "ui-cloner-puppeteer",
   "version": "1.0.0",
-  "description": "Clone web page and save assets",
+  "description": "Clone web page and save assets locally",
   "main": "clone.js",
   "scripts": {
     "clone": "node clone.js"

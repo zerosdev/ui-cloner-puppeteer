@@ -1,5 +1,5 @@
 # UI Cloner - Puppeteer
-### Clone web page and save assets
+Clone web page and save assets locally
 
 ## Installation
 
