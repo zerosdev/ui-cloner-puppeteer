@@ -2,7 +2,10 @@
   "name": "ui-cloner-puppeteer",
   "version": "1.0.0",
   "description": "Clone web page and save assets",
-  "main": "scrape.js",
+  "main": "clone.js",
+  "scripts": {
+    "clone": "node clone.js"
+  },
   "author": {
     "email": "admin@zeros.co.id",
     "name": "Zeros Technology"

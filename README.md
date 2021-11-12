@@ -9,11 +9,11 @@
 
 ## Usage
 
-Run `node clone.js url={target url}`
+Run `node clone url={target url}`
 
-Example : `node clone.js url=https://google.com`
+Example : `node clone url=https://google.com`
 
 ## Arguments
 
   - `url` = Specify target url
-  - `disable` = Exclude resource type. Available value: `image`, `css`, `js`, `font`. For multiple type, separate with comma: `image,css,js`
+  - `disable` = Exclude some asset type. Available value: `image`, `css`, `js`, `font`. For multiple type, separate with comma: `image,css,js`
