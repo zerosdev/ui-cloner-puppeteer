@@ -53,9 +53,12 @@ const host = hostname.hostname;
   	const url = new URL(res.url());
     const regex = /http(s|):\/\//is;
     if (! regex.test(url.pathname)) {
-      let filePath = path.resolve(`./output/${host}${url.pathname}`);
+      let filePath = path.resolve(`.${path.sep}output${path.sep}${host}${url.pathname}`);
       if (path.extname(url.pathname).trim() === '') {
-        filePath = `${filePath}/index.html`;
+        filePath = `${filePath}${path.sep}index.html`;
+      }
+      if (! args.hasOwnProperty('--no-progress')) {
+        console.info('Saving: ' + res.url() + ' => ' + filePath);
       }
       await fs.outputFile(filePath, await res.buffer());
     }
@@ -63,11 +66,12 @@ const host = hostname.hostname;
 
   // go to target url
   await page.goto(target, {
-      waitUntil: "networkidle2", // wait till all network requests has been processed
+      waitUntil: ['domcontentloaded', 'networkidle0'],
     });
 
-  // wait 10 seconds and close browser
+  // wait 2 seconds and close browser
   setTimeout(async () => {
     await browser.close();
-  }, 10 * 1000);
+  }, 2 * 1000);
+
 })();

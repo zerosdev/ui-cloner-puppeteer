@@ -15,5 +15,6 @@ Example : `node clone url=https://google.com`
 
 ## Arguments
 
-  - `url` = Specify target url
-  - `disable` = Exclude some asset type. Available value: `image`, `css`, `js`, `font`. For multiple type, separate with comma: `image,css,js`
+  - `url={target url}` = Specify target url
+  - `disable={asset types}` = Exclude some asset type. Available value: `image`, `css`, `js`, `font`. For multiple type, separate with comma: `image,css,js`
+  - `--no-progress` = Hide progress
