@@ -21,8 +21,17 @@ const hostname = new URL(target);
 const host = hostname.hostname;
 
 (async () => {
-  const browser = await puppeteer.launch({headless: false});
-  const page = await browser.newPage();
+  const browser = await puppeteer.launch({
+    headless: false,
+    args: [
+      '--window-size=1024,600'
+    ],
+    defaultViewport: {
+      width: 1024,
+      height: 600
+    }
+  });
+  const [page] = await browser.pages();
   await page.setRequestInterception(true);
 
   var dis = [];
@@ -66,8 +75,9 @@ const host = hostname.hostname;
 
   // go to target url
   await page.goto(target, {
-      waitUntil: ['domcontentloaded', 'networkidle0'],
-    });
+    waitUntil: ['domcontentloaded', 'networkidle0'],
+    timeout: 120000 // 120 seconds
+  });
 
   // wait 2 seconds and close browser
   setTimeout(async () => {
